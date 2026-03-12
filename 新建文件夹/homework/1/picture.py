@@ -11,24 +11,31 @@ turtle.setx(-300)
 turtle.pendown()
 
 #圆
+turtle.begin_fill()
+turtle.color("red")
 turtle.circle(100)
+turtle.end_fill()
 turtle.penup()
 
 #正方形
 turtle.forward(150)
 turtle.pendown()
+turtle.begin_fill()
+turtle.color("blue")
 for i in range(4):
     turtle.forward(200)
     turtle.left(90)
+turtle.end_fill()
 turtle.penup()
 
 #三角形
 turtle.forward(300)
 turtle.pendown()
-
+turtle.begin_fill()
+turtle.color("yellow")
 for i in range(3):
     turtle.forward(200)
     turtle.left(120)
-
+turtle.end_fill()
 turtle.update()
 turtle.done()
