@@ -1,16 +1,16 @@
-#主函数
+# 主函数
 
-#从...模块导入...类
+# 从...模块导入...类
 from env import TreasureHuntEnv
 from q_learning import QLearningAgent
 
 def train():
     #实例化类
     env = TreasureHuntEnv()
-    agent = QLearningAgent(action_dim=4, alpha=0.1, gamma=0.99, epsilon=0.3)
+    agent = QLearningAgent(action_dim=4, alpha=0.4, gamma=0.99, epsilon=0.7)
 
     #设置训练次数
-    episodes = 3000000
+    episodes = 300000
 
     #进入训练
     for episode in range(episodes):
@@ -31,17 +31,17 @@ def train():
             state = next_state
             total_reward += reward
 
-        #加入判断获得结果
-        # if len(env.collected_chests) == 2:
-        #     print("第{}轮拿到了两个宝箱".format(episode+1))
-        #     print(
-        #         f"Episode {episode + 1}, "
-        #         f"total_reward = {total_reward}, "
-        #         f"steps = {info['steps']}, "
-        #         f"chests = {info['collected_chests']}"
-        #     )
+        # 加入判断获得结果
+        if len(env.collected_chests) == 5:
+            print("第{}轮拿到了4个宝箱".format(episode+1))
+            print(
+                f"Episode {episode + 1}, "
+                f"total_reward = {total_reward}, "
+                f"steps = {info['steps']}, "
+                f"chests = {info['collected_chests']}"
+            )
 
-        if (episode + 1) % 10000 == 0:
+        if (episode + 1) % 1000 == 0:
             print(
                 f"Episode {episode + 1}, "
                 f"total_reward = {total_reward}, "
