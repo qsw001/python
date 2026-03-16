@@ -4,10 +4,10 @@ from copy import deepcopy
 class TreasureHuntEnv:
     def __init__(self):# 这里的init指的是构造函数,self指的是它本身
         self.original_map = [
-            ['S', '.', '.', '#', '.', 'C'],
+            ['S', '.', '.', '.', '.', 'C'],
             ['.', '#', '.', '#', '.', '.'],
             ['.', '#', '.', '.', '.', '.'],
-            ['.', '.', '#', '#', '.', '.'],
+            ['.', '.', '.', '#', '.', '.'],
             ['C', '.', '.', '.', '#', '.'],
             ['.', '.', '.', '.', '.', 'G']
         ]#S为起点，G为终点，C为宝箱
@@ -97,11 +97,11 @@ class TreasureHuntEnv:
         #吃到宝箱加分，并且更新搜集到的宝箱位置
         if self.agent_pos in self.chest_positions and self.agent_pos not in self.collected_chests:
             self.collected_chests.add(self.agent_pos)
-            reward += 20
+            reward += 40
 
         #到达终点加分
         if self.agent_pos == self.goal_pos:
-            reward += 100
+            reward += 80
             self.done = True
 
         #步数达到上限是结束
