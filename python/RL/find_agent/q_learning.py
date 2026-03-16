@@ -26,21 +26,23 @@ class QLearningAgent:
         #     return random.randint(0, self.action_dim - 1)
         # return self.greedy_action(state)
         if random.random() < self.epsilon:#有0.2的概率进入随机事件
-            return random.randint(0,self.action_dim)
+            return random.randint(0,self.action_dim - 1)
         return self.greedy_action(state)
 
     def greedy_action(self, state):
-        q_values = self.q_table[state],#得到4个值，为当前情况下向哪里走可能获得收益的可能性
+        q_values = self.q_table[state]#得到4个值，为当前情况下向哪里走可能获得收益的可能性
         max_q = max(q_values)
         best_actions = [i for i, q in enumerate(q_values) if q == max_q]#enumerate的作用是获取索引和值,这句话的意思是如果存在多个一样的值，将他们总结道一起
         return random.choice(best_actions)#随机选择一个前进
 
+    #更新q值，算出当前情况下最大收益行动的q_table[next_state],将next_state的最大值经过适当处理反向加给当前的q_table,应用的是贝尔曼方程思想(有些不准确)
     def update(self, state, action, reward, next_state, done):
         current_q = self.q_table[state][action]
         next_max_q = 0 if done else max(self.q_table[next_state])
-        target = reward + self.gamma * next_max_q
+        target = reward + self.gamma * next_max_q#reward为当前的实际收益
         self.q_table[state][action] += self.alpha * (target - current_q)
 
+    #保存训练值和加载训练值
     def save(self, path):
         with open(path, "wb") as f:
             pickle.dump(dict(self.q_table), f)

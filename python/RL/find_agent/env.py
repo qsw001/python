@@ -62,51 +62,7 @@ class TreasureHuntEnv:
         )
         return (self.agent_pos, chest_state)
 
-
-    # def step(self, action):
-    #     if self.done:
-    #         raise ValueError("回合已经结束，请先 reset()")#raise主动触发错误，让进程停止
-
-    #     self.steps += 1
-    #     reward = -1
-
-    #     dx, dy = self.actions[action]
-    #     x, y = self.agent_pos
-    #     nx, ny = x + dx, y + dy
-
-    #     if not (0 <= nx < self.rows and 0 <= ny < self.cols):
-    #         reward -= 5
-    #         return self.get_state(), reward, self.done, {
-    #             "steps": self.steps,
-    #             "collected_chests": len(self.collected_chests)
-    #         }
-
-    #     if self.map[nx][ny] == '#':
-    #         reward -= 5
-    #         return self.get_state(), reward, self.done, {
-    #             "steps": self.steps,
-    #             "collected_chests": len(self.collected_chests)
-    #         }
-
-    #     self.agent_pos = (nx, ny)
-
-    #     if self.agent_pos in self.chest_positions and self.agent_pos not in self.collected_chests:
-    #         self.collected_chests.add(self.agent_pos)
-    #         reward += 20
-
-    #     if self.agent_pos == self.goal_pos:
-    #         reward += 100
-    #         self.done = True
-
-    #     if self.steps >= self.max_steps:
-    #         self.done = True
-
-    #     return self.get_state(), reward, self.done, {
-    #         "steps": self.steps,
-    #         "collected_chests": len(self.collected_chests)
-    #     }
-
-    #传入当前状态和要移动的方向，来做出判断
+    #传入当前状态和要移动的方向，来做出判断,并返回一系列参数
     def step(self, action):
         if self.done:
             raise ValueError("回合已经结束，请先 reset()")
@@ -120,7 +76,7 @@ class TreasureHuntEnv:
         nx, ny = x + dx, y + dy
 
         #判断如果出界
-        if not (0 <= nx <= self.rows and 0 <= ny <= self.cols):
+        if not (0 <= nx < self.rows and 0 <= ny < self.cols):
             reward -= 5
             return self.get_state(), reward, self.done, {
                 "steps": self.steps,
