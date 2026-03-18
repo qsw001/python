@@ -10,7 +10,7 @@ def train():
     agent = QLearningAgent(action_dim=4, alpha=0.4, gamma=0.99, epsilon=0.7)
 
     #设置训练次数
-    episodes = 300000
+    episodes = 30000
 
     #进入训练
     for episode in range(episodes):

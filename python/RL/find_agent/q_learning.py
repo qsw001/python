@@ -5,7 +5,7 @@ from collections import defaultdict
 
 #强调一下这里面的state第一个值指的是当前位置的坐标，而第二个是一个包含宝箱是否被获取的元组(1,0)第一个已经得到了，第二个还没有得到
 
-#state数据结构((位置),(宝箱情况))
+#state数据结构((位置),(宝箱获得的位置))
 
 class QLearningAgent:
     def __init__(self, action_dim, alpha=0.1, gamma=0.99, epsilon=0.2):
