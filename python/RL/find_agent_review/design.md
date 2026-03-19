@@ -15,4 +15,14 @@ env为强化学习所需要的环境，对于本项目，我们可以将环境�
 
 ## agent设计
 
+1. init : 初始化，我们要确定agent的alpha(学习率,越小越稳定),gamma(折扣率，越大越注重长远的收益),action_dim(可行动数),epsilon(探索率),q_table
+2. choose_agent : 训练时agent在按照q_table行动的同时还要产生一定的随机性,所以我们用随机数，由epsilon1的概率随机移动试错
+3. greedy_agent : 贪心agent,在训练完成后agent便不会随机试错，而是遵寻当前的q_table前进
+4. update : 最为重要的函数，其传入参数为step的传出参数，state(reset返回), action(choose返回) 遵循统一的接口规范, 其核心思想为贝尔曼方程，即当前最大收益等于当前收益+未来最大收益，可以看出它是递归定义的，所以我们的目的是或取当前的收益和未来的最大的q_table,然后将其反向更新入当前q_table中，具体步骤为
+    - 获取当前的q值
+    - 获取经验的target(reward+gamma*next_maxq)
+    - 两者做差*学习率，修正到q_table上
+5. 保存和加载训练值
+
+
 
