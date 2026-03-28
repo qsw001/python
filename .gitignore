@@ -1,4 +1,9 @@
-.venv
-.vs
-.vscode
-.env
+# Python / venv
+.venv/
+
+# VS / VSCode
+.vs/
+.vscode/
+
+# 环境变量
+.env*
