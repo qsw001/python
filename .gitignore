@@ -5,5 +5,7 @@
 .vs/
 .vscode/
 
+chroma_db/
+
 # 环境变量
 .env*
